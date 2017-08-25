@@ -7,6 +7,7 @@ import backgroundImg from './images/portland-bg.jpg'
 import Forecast from './Forecast'
 import CurrentWeather from './CurrentWeather';
 import Loader from './Loader'
+import TempSwitch from "./TempSwitch"
 
 const cityId = '5746545';
 
@@ -52,7 +53,8 @@ class App extends Component {
   state = {
     isPreLoading: true,
     forecastDays: Imm.fromJS([]),
-    currentWeather: Imm.fromJS({})
+    currentWeather: Imm.fromJS({}),
+    isMetric: true
   }
   componentWillMount() {    
     // Force loading animation for a few seconds
@@ -73,29 +75,39 @@ class App extends Component {
         alert("Sorry, we couldn't fetch the forecast, please check your network connection.")
       })
   }
+  toggleIsMetric() {
+    this.setState(state => ({isMetric: !state.isMetric}))
+  }
   render() {
-    const {isPreLoading, forecastDays, currentWeather} = this.state;
+    const {isPreLoading, forecastDays, currentWeather, isMetric} = this.state;
     const isLoading = isPreLoading || forecastDays.size === 0;
 
     return (
       <AppContainer>
         <BackgroundLayer isLoaded={!isLoading} />
         <MainContainer>
-          {!isLoading
-            ? [
+          {isLoading
+            ? <Loader />
+            : [
+                <TempSwitch
+                  key="switch"
+                  onToggle={() => this.toggleIsMetric()}
+                  isMetric={isMetric}
+                />,
                 <CurrentWeather
                   key="current"
                   icon={currentWeather.get('icon')}
                   temp={currentWeather.get('temp')}
                   title={currentWeather.get('title')}
                   description={currentWeather.get('description')}
+                  isMetric={isMetric}
                 />,
                 <Forecast
                   key="forecast"
                   forecastDays={forecastDays}
+                  isMetric={isMetric}
                 />
               ]
-            : <Loader />
           }
         </MainContainer>
       </AppContainer>

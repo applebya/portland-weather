@@ -4,6 +4,7 @@ import {Sparklines, SparklinesLine, SparklinesReferenceLine} from "react-sparkli
 
 import {fadeInUp} from "./animations";
 import WeatherIcon from "./WeatherIcon";
+import TempView from "./TempView";
 
 const Cards = styled.section`display: flex;`;
 
@@ -65,24 +66,23 @@ const Header = styled.div`
 			text-align: right;
 		}
 
-		> span {
+		> small {
 			font-size: 0.65em;
 			font-weight: 300;
 		}
 	}
 `;
 
-const DayCard = ({index, date, averageTemp, timeBlocks, minTemp, maxTemp}) => (
+const DayCard = ({index, date, averageTemp, timeBlocks, minTemp, maxTemp, isMetric}) => (
 	<Card index={index}>
 		<Header>
 			<section>
 				{date.format("MMM Do")}
 			</section>
 			<section>
-				<span>AVG</span>
+				<small>Avg.</small>
 				{" "}
-				{averageTemp}
-				<Degrees>&#8451;</Degrees>
+				<TempView temp={averageTemp} isMetric={isMetric} />
 			</section>
 		</Header>
 		<Sparklines
@@ -101,8 +101,7 @@ const DayCard = ({index, date, averageTemp, timeBlocks, minTemp, maxTemp}) => (
 							{timeBlock.get("timeMoment").format("h:mma")}
 						</td>
 						<td>
-							{timeBlock.get("temp")}
-							<Degrees>&#8451;</Degrees>
+							<TempView temp={timeBlock.get("temp")} isMetric={isMetric} />
 						</td>
 						<td>						
 							{timeBlock.get("title")}
@@ -121,7 +120,7 @@ const DayCard = ({index, date, averageTemp, timeBlocks, minTemp, maxTemp}) => (
 
 const Container = styled.div`padding: 15px;`;
 
-const Forecast = ({forecastDays}) => {
+const Forecast = ({forecastDays, isMetric}) => {
 	// Extract min/max values for sparklines scale
 	// TODO: Extract to redux reducer
 	const combinedData = forecastDays.map(day => day.get("timeBlocks")).flatten(true);
@@ -141,6 +140,7 @@ const Forecast = ({forecastDays}) => {
 						timeBlocks={data.get("timeBlocks")}
 						maxTemp={maxTemp}
 						minTemp={minTemp}
+						isMetric={isMetric}
 					/>
 				))}
 			</Cards>

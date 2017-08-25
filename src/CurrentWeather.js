@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import WeatherIcon from "./WeatherIcon";
+import TempView from "./TempView";
 
 const Container = styled.section`
 	color: white;
@@ -32,14 +33,13 @@ const CircleContainer = styled.div`
 
 const Degrees = styled.sup`font-size: 0.5em;`;
 
-const CurrentWeather = ({icon, temp, title, description}) => (
+const CurrentWeather = ({icon, temp, title, description, isMetric}) => (
 	<Container>
 		<CircleContainer>
 			<div>
 				<WeatherIcon icon={icon} />
 				<Temperature>
-					{temp}
-					<Degrees>&#8451;</Degrees>
+					<TempView temp={temp} isMetric={isMetric} />
 				</Temperature>
 				<Title>{title}</Title>
 				<Description>({description})</Description>
