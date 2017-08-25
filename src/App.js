@@ -52,6 +52,10 @@ const BackgroundLayer = styled.div`
 
 const MainContainer = styled.div.attrs({className: 'container'})`
   z-index: 100;
+
+  @media (max-width: 600px) {
+    width: 100% !important;
+  }
 `
 
 class App extends Component {

@@ -42,7 +42,11 @@ const Card = styled.article`
 		font-size: 0.9em;
 		margin-right: 5px;
 		padding: 8px 5px;
-	}	
+	}
+
+	@media (max-width: 600px) {
+		font-size: 1.2em;
+	}
 `;
 
 const Table = styled.table`
@@ -66,6 +70,10 @@ const Table = styled.table`
 
 	@media (max-width: 991px) {
 		.blockTitle {display: none;}
+	}
+
+	@media (max-width: 600px) {
+		.blockTitle {display: inline-block;}
 	}
 `;
 
