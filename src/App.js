@@ -7,7 +7,6 @@ import backgroundImg from './images/portland-bg.jpg'
 import Forecast from './Forecast'
 import CurrentWeather from './CurrentWeather';
 import Loader from './Loader'
-import 'bootstrap-grid'
 
 const cityId = '5746545';
 

@@ -4,7 +4,10 @@ import {injectGlobal} from "styled-components";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 
-// GLobal styles, custom font
+
+// Global styles, custom font
+import "bootstrap-grid";
+
 injectGlobal`
 	@import url('https://fonts.googleapis.com/css?family=Exo+2:300,600,700');
 
