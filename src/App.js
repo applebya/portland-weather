@@ -18,7 +18,12 @@ const AppContainer = styled.div`
   justify-content: center;
   align-items: center;
   background: url(${backgroundImg}) center center no-repeat;
-  background-size: cover;
+  background-size: cover;  
+
+  @media (max-width: 600px) {
+    justify-content: normal;
+    align-items: normal;
+  }
 `
 
 const BackgroundLayer = styled.div`

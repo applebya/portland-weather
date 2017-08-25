@@ -9,6 +9,7 @@ const Container = styled.section`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin-top: 15px;
 `;
 
 const Temperature = styled.span`

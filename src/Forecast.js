@@ -6,7 +6,13 @@ import {fadeInUp} from "./animations";
 import WeatherIcon from "./WeatherIcon";
 import TempView from "./TempView";
 
-const Cards = styled.section`display: flex;`;
+const Cards = styled.section`
+	display: flex;
+
+	@media (max-width: 600px) {
+		display: block;
+	}
+`;
 
 const Card = styled.article`
 	flex: 1;
@@ -15,6 +21,7 @@ const Card = styled.article`
 	box-shadow: 0 0 5px rgba(0,0,0,0.5);
 	margin-right: 20px;
 	padding: 15px;
+	margin-bottom: 10px;
 	color: #666;
 
 	opacity: 0;
@@ -26,6 +33,16 @@ const Card = styled.article`
 		margin-right: 0;
 	}
 
+	@media (max-width: 1199px) {
+		font-size: 0.9em;
+		margin-right: 10px;
+	}
+
+	@media (max-width: 991px) {
+		font-size: 0.9em;
+		margin-right: 5px;
+		padding: 8px 5px;
+	}	
 `;
 
 const Table = styled.table`
@@ -45,6 +62,10 @@ const Table = styled.table`
 		&:last-child {
 			text-align: right;
 		}
+	}
+
+	@media (max-width: 991px) {
+		.blockTitle {display: none;}
 	}
 `;
 
@@ -68,7 +89,7 @@ const Header = styled.div`
 			font-size: 0.65em;
 			font-weight: 300;
 		}
-	}
+	}	
 `;
 
 const DayCard = ({index, date, averageTemp, timeBlocks, minTemp, maxTemp, isMetric}) => (
@@ -106,7 +127,7 @@ const DayCard = ({index, date, averageTemp, timeBlocks, minTemp, maxTemp, isMetr
 							<TempView temp={timeBlock.get("temp")} isMetric={isMetric} />
 						</td>
 						<td>						
-							{timeBlock.get("title")}
+							<span className="blockTitle">{timeBlock.get("title")}</span>
 							<WeatherIcon
 								style={{marginBottom: "-5px"}}
 								icon={timeBlock.get("icon")}
@@ -120,7 +141,19 @@ const DayCard = ({index, date, averageTemp, timeBlocks, minTemp, maxTemp, isMetr
 	</Card>
 );
 
-const Container = styled.div`padding: 15px;`;
+const Container = styled.div`
+	padding: 15px;
+
+	@media (max-width: 600px) {
+		padding: 0;
+	}
+`;
+
+const ForecastHeader = styled.h2`
+	@media (max-width: 600px) {
+		text-align: center;
+	}
+`;
 
 const Forecast = ({forecastDays, isMetric}) => {
 	// Extract min/max values for sparklines scale
@@ -131,7 +164,7 @@ const Forecast = ({forecastDays, isMetric}) => {
 
 	return (
 		<Container>
-			<h2>5 Day Forecast</h2>
+			<ForecastHeader>5 Day Forecast</ForecastHeader>
 			<Cards>
 				{forecastDays.map((data, index) => (
 					<DayCard
