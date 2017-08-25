@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Portland Weather",
+  "name": "Portland Weather",
   "icons": [
     {
       "src": "favicon.ico",
