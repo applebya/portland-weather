@@ -1,0 +1,33 @@
+{
+  "name": "portland-weather",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "6.26.0",
+    "blue-tape": "^1.0.0",
+    "bootstrap-grid": "^2.0.1",
+    "immutable": "^3.8.1",
+    "moment": "^2.18.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-scripts": "1.0.11",
+    "styled-components": "^2.1.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "test2": "tape -r babel-register '**/*-spec.js'",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "eslint": "4.5.0",
+    "eslint-config-standard": "10.2.1",
+    "eslint-plugin-import": "2.7.0",
+    "eslint-plugin-node": "5.1.1",
+    "eslint-plugin-promise": "3.5.0",
+    "eslint-plugin-react": "7.3.0",
+    "eslint-plugin-standard": "3.0.1"
+  }
+}
