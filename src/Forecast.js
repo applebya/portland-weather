@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import {Sparklines, SparklinesLine, SparklinesReferenceLine} from "react-sparklines";
 
 import {fadeInUp} from "./animations";
 import WeatherIcon from "./WeatherIcon";
 
-const Cards = styled.section`
-	display: flex;	
-`;
+const Cards = styled.section`display: flex;`;
 
 const Card = styled.article`
 	flex: 1;
@@ -73,7 +72,7 @@ const Header = styled.div`
 	}
 `;
 
-const DayCard = ({index, date, averageTemp, timeBlocks}) => (
+const DayCard = ({index, date, averageTemp, timeBlocks, minTemp, maxTemp}) => (
 	<Card index={index}>
 		<Header>
 			<section>
@@ -86,6 +85,14 @@ const DayCard = ({index, date, averageTemp, timeBlocks}) => (
 				<Degrees>&#8451;</Degrees>
 			</section>
 		</Header>
+		<Sparklines
+			data={timeBlocks.map(b => b.get("temp")).toArray()} 
+			min={minTemp}
+			max={maxTemp}
+		>			
+			<SparklinesLine color="gray" />
+			<SparklinesReferenceLine type="mean" color="blue" />
+		</Sparklines>
 		<Table>
 			<tbody>
 				{timeBlocks.map(timeBlock => (
@@ -112,25 +119,33 @@ const DayCard = ({index, date, averageTemp, timeBlocks}) => (
 	</Card>
 );
 
-const Container = styled.div`
-	padding: 15px;
-`;
+const Container = styled.div`padding: 15px;`;
 
-const Forecast = ({forecastDays}) => (
-	<Container>
-		<h2>5 Day Forecast</h2>
-		<Cards>
-			{forecastDays.map((data, index) => (
-				<DayCard
-					key={+data.get("dayMoment")}
-					index={index}
-					date={data.get("dayMoment")}
-					averageTemp={data.get("averageTemp")}
-					timeBlocks={data.get("timeBlocks")}
-				/>
-			))}
-		</Cards>
-	</Container>
-);
+const Forecast = ({forecastDays}) => {
+	// Extract min/max values for sparklines scale
+	// TODO: Extract to redux reducer
+	const combinedData = forecastDays.map(day => day.get("timeBlocks")).flatten(true);
+	const maxTemp = combinedData.maxBy(day => day.get("temp")).get("temp");
+	const minTemp = combinedData.minBy(day => day.get("temp")).get("temp");
+
+	return (
+		<Container>
+			<h2>5 Day Forecast</h2>
+			<Cards>
+				{forecastDays.map((data, index) => (
+					<DayCard
+						key={+data.get("dayMoment")}
+						index={index}
+						date={data.get("dayMoment")}
+						averageTemp={data.get("averageTemp")}
+						timeBlocks={data.get("timeBlocks")}
+						maxTemp={maxTemp}
+						minTemp={minTemp}
+					/>
+				))}
+			</Cards>
+		</Container>
+	);	
+};
 
 export default Forecast;
