@@ -48,8 +48,6 @@ const Table = styled.table`
 	}
 `;
 
-const Degrees = styled.sup`font-size: 0.5em;`;
-
 const Header = styled.div`
 	display: flex;
 
@@ -80,16 +78,20 @@ const DayCard = ({index, date, averageTemp, timeBlocks, minTemp, maxTemp, isMetr
 				{date.format("MMM Do")}
 			</section>
 			<section>
-				<small>Avg.</small>
-				{" "}
-				<TempView temp={averageTemp} isMetric={isMetric} />
+				{timeBlocks.size > 7 &&
+				<div>
+					<small>Avg.</small>
+					{" "}
+					<TempView temp={averageTemp} isMetric={isMetric} />
+				</div>
+				}
 			</section>
 		</Header>
 		<Sparklines
 			data={timeBlocks.map(b => b.get("temp")).toArray()} 
 			min={minTemp}
 			max={maxTemp}
-		>			
+		>
 			<SparklinesLine color="gray" />
 			<SparklinesReferenceLine type="mean" color="blue" />
 		</Sparklines>

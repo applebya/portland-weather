@@ -31,8 +31,6 @@ const CircleContainer = styled.div`
 	text-align: center;
 `;
 
-const Degrees = styled.sup`font-size: 0.5em;`;
-
 const CurrentWeather = ({icon, temp, title, description, isMetric}) => (
 	<Container>
 		<CircleContainer>
