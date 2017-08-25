@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap-grid": "^2.0.1",
+    "gh-pages": "^1.0.0",
     "immutable": "^3.8.1",
     "moment": "^2.18.1",
     "react": "^15.6.1",
@@ -16,7 +17,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "eslint": "4.5.0",
