@@ -2,6 +2,7 @@
   "name": "portland-weather",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://applebya.github.io/portland-weather",
   "dependencies": {
     "bootstrap-grid": "^2.0.1",
     "gh-pages": "^1.0.0",
