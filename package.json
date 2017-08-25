@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "babel-preset-es2015": "^6.24.1",
-    "babel-register": "6.26.0",
-    "blue-tape": "^1.0.0",
     "bootstrap-grid": "^2.0.1",
     "immutable": "^3.8.1",
     "moment": "^2.18.1",
@@ -19,7 +16,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "test2": "tape -r babel-register '**/*-spec.js'",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
