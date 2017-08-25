@@ -55,6 +55,7 @@ const MainContainer = styled.div.attrs({className: 'container'})`
 
   @media (max-width: 600px) {
     width: 100% !important;
+    padding: 0 !important;
   }
 `
 

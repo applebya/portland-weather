@@ -12,6 +12,13 @@ const Switch = styled.div`
 	background: rgba(255,255,255,0.25);
 	color: white;
 	cursor: pointer;
+
+	@media (max-width: 600px) {
+		z-index: 9999;
+		position: fixed;
+		color: black;
+		border-color: rgba(0,0,0,0.65);
+	}
 `;
 
 const TempType = styled.section`

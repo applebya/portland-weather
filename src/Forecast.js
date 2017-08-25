@@ -46,6 +46,7 @@ const Card = styled.article`
 
 	@media (max-width: 600px) {
 		font-size: 1.2em;
+		margin-right: 0px;
 	}
 `;
 
